@@ -1,19 +1,20 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.nodejs = let
-    nodejs = {
+    makeConfig = pkgs: {
       environment.systemPackages = with pkgs; [
         nodejs
         nodePackages.npm
       ];
     };
-  in {
-    nixos = nodejs;
-    darwin = nodejs;
-    homeManager = {
+    makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
         nodePackages.pnpm
         nodePackages.yarn
       ];
     };
+  in {
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

@@ -1,12 +1,12 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.tmux = let
-    tmux = {
+    makeConfig = pkgs: {
       environment.systemPackages = [
         pkgs.tmux
       ];
     };
   in {
-    nixos = tmux;
-    darwin = tmux;
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
   };
 }

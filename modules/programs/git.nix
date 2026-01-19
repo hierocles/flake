@@ -1,14 +1,11 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.git = let
-    git = {
+    makeConfig = pkgs: {
       environment.systemPackages = [
         pkgs.git
       ];
     };
-  in {
-    nixos = git;
-    darwin = git;
-    homeManager = {
+    makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
         difftastic
         gh
@@ -47,5 +44,9 @@
         };
       };
     };
+  in {
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

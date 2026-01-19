@@ -1,19 +1,20 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.python = let
-    python = {
+    makeConfig = pkgs: {
       environment.systemPackages = with pkgs; [
         python3
       ];
     };
-  in {
-    nixos = python;
-    darwin = python;
-    homeManager = {
+    makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
         python3Packages.pip
         ruff
         black
       ];
     };
+  in {
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

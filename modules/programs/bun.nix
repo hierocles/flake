@@ -1,12 +1,12 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.bun = let
-    bun-runtime = {
+    makeConfig = pkgs: {
       environment.systemPackages = with pkgs; [
         bun
       ];
     };
   in {
-    nixos = bun-runtime;
-    darwin = bun-runtime;
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
   };
 }

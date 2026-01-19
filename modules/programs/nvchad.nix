@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   flake-file.inputs = {
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
@@ -14,14 +10,11 @@
     overlay = {
       nixpkgs.overlays = [
         (final: prev: {
-          nvchad = inputs.nix4nvchad.packages."${pkgs.stdenv.hostPlatform.system}".nvchad;
+          nvchad = inputs.nix4nvchad.packages."${prev.stdenv.hostPlatform.system}".nvchad;
         })
       ];
     };
-  in {
-    nixos = overlay;
-    darwin = overlay;
-    homeManager = {
+    makeHomeConfig = pkgs: {
       imports = [
         inputs.nix4nvchad.homeManagerModule
       ];
@@ -36,5 +29,9 @@
         ];
       };
     };
+  in {
+    nixos = overlay;
+    darwin = overlay;
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }
