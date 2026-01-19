@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   flake.aspects.nom = let
     package = {
-      sytem.environmentPackages = [pkgs.nix-output-monitor];
+      environment.systemPackages = [pkgs.nix-output-monitor];
     };
   in {
     nixos = package;

@@ -68,10 +68,6 @@
       flake = false;
       url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
     };
-    treefmt-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:numtide/treefmt-nix";
-    };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 

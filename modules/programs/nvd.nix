@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   flake.aspects.nvd = let
     package = {
-      sytem.environmentPackages = [pkgs.nvd];
+      environment.systemPackages = [pkgs.nvd];
     };
   in {
     nixos = package;

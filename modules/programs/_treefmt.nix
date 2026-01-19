@@ -3,14 +3,15 @@
   lib,
   ...
 }: {
-  flake-file.inputs = {
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  # Disabled: treefmt-nix input removed
+  # flake-file.inputs = {
+  #   treefmt-nix = {
+  #     url = "github:numtide/treefmt-nix";
+  #     inputs.nixpkgs.follows = "nixpkgs";
+  #   };
+  # };
 
-  imports = lib.optionals (inputs ? treefmt-nix) [inputs.treefmt-nix.flakeModule];
+  # imports = lib.optionals (inputs ? treefmt-nix) [inputs.treefmt-nix.flakeModule];
 
   flake.aspects.treefmt = let
     treefmt-nix = {
