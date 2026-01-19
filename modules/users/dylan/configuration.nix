@@ -8,6 +8,7 @@
         dylan._.git
         dylan._.gpg
         dylan._.tmux
+        dylan._.nvchad
       ];
       nixos = {pkgs, ...}: {
         programs.fish.enable = true;
