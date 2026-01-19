@@ -1,0 +1,5 @@
+*.code-workspace
+.claude/
+.vscode/
+.github/
+CLAUDE.md
