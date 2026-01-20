@@ -14,7 +14,7 @@
     wsl = {
       description = "Use WSL for development on Windows";
       includes = with aspects; [
-        system-essentials
+        wsl-essentials
         dylan
       ];
       nixos = {
@@ -25,6 +25,9 @@
           startMenuLaunchers = true;
           wslConf.automount.root = "/mnt";
         };
+        # WSL doesn't need a traditional bootloader or boot partition
+        boot.loader.grub.enable = lib.mkForce false;
+        boot.loader.systemd-boot.enable = lib.mkForce false;
       };
     };
   };

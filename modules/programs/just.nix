@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.just = let
-    package = {
+    makeConfig = pkgs: {
       environment.systemPackages = [pkgs.just];
     };
   in {
-    nixos = package;
-    darwin = package;
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
   };
 }

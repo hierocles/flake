@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{...}: {
   flake.aspects.nom = let
-    package = {
+    makeConfig = pkgs: {
       environment.systemPackages = [pkgs.nix-output-monitor];
     };
   in {
-    nixos = package;
-    darwin = package;
+    nixos = {pkgs, ...}: makeConfig pkgs;
+    darwin = {pkgs, ...}: makeConfig pkgs;
   };
 }
