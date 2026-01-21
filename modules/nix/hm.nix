@@ -29,11 +29,15 @@ in {
       imports =
         lib.optionals (inputs ? home-manager) [inputs.home-manager.darwinModules.home-manager]
         ++ [hm-config];
+      home-manager.sharedModules =
+        lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant];
     };
     nixos = {
       imports =
         lib.optionals (inputs ? home-manager) [inputs.home-manager.nixosModules.home-manager]
         ++ [hm-config];
+      home-manager.sharedModules =
+        lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant];
     };
   };
 }

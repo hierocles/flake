@@ -3,6 +3,7 @@ _: {
     homeManager = {
       programs.starship = {
         enable = true;
+        enableFishIntegration = true;
         settings = {
           command_timeout = 10000;
           add_newline = true;

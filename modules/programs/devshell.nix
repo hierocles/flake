@@ -1,6 +1,6 @@
 _: {
   # Empty aspect - devShell is configured via perSystem
-  flake.aspects.devenv = {};
+  flake.aspects.devshell = {};
 
   perSystem = {pkgs, ...}: {
     devShells.default = pkgs.mkShell {
