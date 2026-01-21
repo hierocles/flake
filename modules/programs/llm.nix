@@ -12,7 +12,7 @@
         opencode
         copilot-cli
         cursor-agent
-        gemini-cli
+        #gemini-cli # Not building right now, Numtide needs to update
         ccstatusline
         ccusage
         copilot-language-server
@@ -28,7 +28,7 @@
         claude-code = llm-agents-pkgs.claude-code;
         opencode = llm-agents-pkgs.opencode;
         copilot-cli = llm-agents-pkgs.copilot-cli;
-        gemini-cli = llm-agents-pkgs.gemini-cli;
+        #gemini-cli = llm-agents-pkgs.gemini-cli;
         copilot-language-server = llm-agents-pkgs.copilot-language-server;
       })
     ];

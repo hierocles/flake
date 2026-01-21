@@ -6,6 +6,7 @@
         enable = true;
         extraRules = [{
           groups = ["wheel"];
+          users = ["dylan"];
           persist = true;
           keepEnv = true;
         }];

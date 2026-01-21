@@ -1,5 +1,11 @@
-{pkgs, ...}: {
-  flake.aspects.redis = {
+{...}: {
+  flake.aspects.redis = let
+    makeHomeConfig = pkgs: {
+      home.packages = with pkgs; [
+        redis
+      ];
+    };
+  in {
     nixos = {
       services.redis.servers."" = {
         enable = true;
@@ -10,10 +16,6 @@
     darwin = {
       # Redis on macOS via Homebrew managed separately
     };
-    homeManager = {
-      home.packages = with pkgs; [
-        redis
-      ];
-    };
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

@@ -4,6 +4,8 @@
       environment.systemPackages = [
         pkgs.git
       ];
+      # Allow root to operate on user-owned repos (needed for doas/sudo nixos-rebuild)
+      programs.git.config.safe.directory = "/home/dylan/flake";
     };
     makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
@@ -14,7 +16,7 @@
       programs.git = {
         # Username and email need to be set in user aspect
         enable = true;
-        extraConfig = {
+        settings = {
           init.defaultBranch = "main";
           pull.rebase = true;
           pager.difftool = "difftastic";
@@ -37,8 +39,12 @@
           "result"
         ];
         lfs.enable = true;
-        delta.enable = true;
-        delta.options = {
+      };
+
+      programs.delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options = {
           line-numbers = true;
           side-by-side = false;
         };

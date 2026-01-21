@@ -42,13 +42,13 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
     };
     import-tree.url = "github:vic/import-tree";
     llm-agents.url = "github:numtide/llm-agents.nix";
     nix-darwin = {
       inputs.nixpkgs.follows = "nixpkgs-darwin";
-      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
+      url = "github:LnL7/nix-darwin";
     };
     nix-init.url = "github:nix-community/nix-init";
     nix-mineral.url = "github:cynicsketch/nix-mineral";

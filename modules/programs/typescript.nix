@@ -1,10 +1,12 @@
-{pkgs, ...}: {
-  flake.aspects.typescript = {
-    homeManager = {
+{...}: {
+  flake.aspects.typescript = let
+    makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
         nodePackages.typescript
-        nodePackages.ts-node
+        nodePackages.typescript-language-server
       ];
     };
+  in {
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

@@ -28,6 +28,11 @@
         # WSL doesn't need a traditional bootloader or boot partition
         boot.loader.grub.enable = lib.mkForce false;
         boot.loader.systemd-boot.enable = lib.mkForce false;
+        # Connect transposed homeManager configs to the user
+        home-manager.users.dylan.imports = [
+          inputs.self.modules.homeManager.constants
+          inputs.self.modules.homeManager.dylan
+        ];
       };
     };
   };

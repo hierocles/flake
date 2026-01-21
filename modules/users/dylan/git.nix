@@ -2,15 +2,18 @@
   flake.aspects.dylan._.git = {
     homeManager = {config, ...}: {
       programs.git = {
+        enable = true;
         settings = {
-          name = "hierocles";
-          email = config.constants.admin.email;
+          user = {
+            email = config.constants.admin.email;
+            name = "hierocles";
+          };
         };
-        signing = {
-          format = "openpgp";
-          key = "";
-          signByDefault = true;
-        };
+        #signing = {
+        #  format = "openpgp";
+        #  key = "";
+        #  signByDefault = false;
+        #};
       };
     };
   };

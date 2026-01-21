@@ -14,17 +14,24 @@
     homeManager = {
       programs.ssh = {
         enable = true;
-        addKeysToAgent = "yes";
-        controlMaster = "auto";
-        controlPath = "~/.ssh/socket-%r@%h:%p";
-        controlPersist = "10m";
-        matchBlocks = {};
+        enableDefaultConfig = false;
+        matchBlocks = {
+          "*" = {
+            forwardAgent = false;
+            addKeysToAgent = "no";
+            compression = false;
+            serverAliveInterval = 0;
+            serverAliveCountMax = 3;
+            hashKnownHosts = false;
+            userKnownHostsFile = "~/.ssh/known_hosts";
+            controlMaster = "auto";
+            controlPath = "~/.ssh/sockets/master-%r@%h:%p";
+            controlPersist = "300s";
+          };
+        };
       };
 
-      services.ssh-agent = {
-        enable = true;
-        fishIntegration = true;
-      };
+      services.ssh-agent.enable = true;
     };
   };
 }

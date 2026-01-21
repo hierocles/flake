@@ -17,6 +17,11 @@
             "iMovie" = 408981434;
           };
         };
+        # Connect transposed homeManager configs to the user
+        home-manager.users.dylan.imports = [
+          inputs.self.modules.homeManager.constants
+          inputs.self.modules.homeManager.dylan
+        ];
       };
     };
   };

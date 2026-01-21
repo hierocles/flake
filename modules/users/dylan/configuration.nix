@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.aspects = {aspects, ...}: {
     dylan = {
       includes = with aspects; [
@@ -14,8 +14,9 @@
         programs.fish.enable = true;
         users.users.dylan = {
           isNormalUser = true;
-          initialPassword = "";
+          initialPassword = "ChangeMe";
           shell = pkgs.fish;
+          extraGroups = ["wheel"];
         };
       };
       darwin = {pkgs, ...}: {
@@ -28,6 +29,8 @@
       };
       homeManager = {
         home.username = "dylan";
+        home.stateVersion = "25.11";
+        programs.fish.enable = true;
       };
     };
   };

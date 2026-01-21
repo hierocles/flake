@@ -1,6 +1,6 @@
-{pkgs, ...}: {
-  flake.aspects.dylan._.tmux = {
-    homeManager = {
+{...}: {
+  flake.aspects.dylan._.tmux = let
+    makeHomeConfig = pkgs: {
       # Add packages needed by tmux plugins
       home.packages = with pkgs; [
         wl-clipboard # For tmux-thumbs clipboard integration (Wayland)
@@ -11,7 +11,7 @@
         shell = "${pkgs.fish}/bin/fish";
         terminal = "tmux-256color";
         historyLimit = 100000;
-        keymode = "vi";
+        keyMode = "vi";
         baseIndex = 1;
 
         plugins = with pkgs.tmuxPlugins; [
@@ -255,5 +255,7 @@
         '';
       };
     };
+  in {
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

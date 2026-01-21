@@ -1,12 +1,12 @@
-{pkgs, ...}: {
-  flake.aspects.react = {
-    homeManager = {
+{...}: {
+  flake.aspects.react = let
+    makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
-        nodePackages.create-react-app
-        nodePackages.vite
-        nodePackages.tailwindcss
-        nodePackages.prettier-plugin-tailwindcss
+        vite
+        tailwindcss
       ];
     };
+  in {
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }

@@ -1,6 +1,6 @@
-{pkgs, ...}: {
-  flake.aspects.gpg = {
-    homeManager = {
+{...}: {
+  flake.aspects.gpg = let
+    makeHomeConfig = pkgs: {
       services.gpg-agent = {
         enable = true;
         enableSshSupport = true;
@@ -58,5 +58,7 @@
         };
       };
     };
+  in {
+    homeManager = {pkgs, ...}: makeHomeConfig pkgs;
   };
 }
