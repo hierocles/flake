@@ -8,19 +8,18 @@ _: {
           command_timeout = 10000;
           add_newline = true;
           format = builtins.concatStringsSep "" [
-            "[ ](red)"
+            "[](red)"
             "$os"
             "$username"
-            "$localip"
-            "[ ](bg:peach fg:red)"
+            "$localid"
+            "[](bg:peach fg:red)"
             "$directory"
-            "[ ](bg:yellow fg:peach)"
+            "[](bg:yellow fg:peach)"
             "$git_branch"
             "$git_status"
-            "[ ](fg:yellow bg:green)"
-            "$nodejs"
-            "$python"
-            "[ ](fg:sapphire bg:lavender)"
+            "[](fg:yellow bg:green)"
+            "$nix_shell"
+            "[](fg:green bg:lavender)"
             "$time"
             "[ ](fg:lavender)"
             "$cmd_duration"
@@ -63,36 +62,21 @@ _: {
           };
           git_branch = {
             style = "bg:yellow";
-            symbol = " ";
+            symbol = "";
             format = "[[ $symbol $branch ](fg:crust bg:yellow)]($style)";
           };
           git_status = {
             style = "bg:yellow";
             format = "[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)";
           };
-          nodejs = {
-            style = "bg:green";
-            symbol = " ";
-            format = "[[ $symbol( $version) ](fg:crust bg:green)]($style)";
-          };
-          python = {
-            symbol = "";
-            style = "bg:green";
-            format = "[[ $symbol( $version)(($virtualenv)) ](fg:crust bg:green)]($style)";
-          };
-          docker_context = {
-            symbol = "";
-            style = "bg:sapphire";
-            format = "[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)";
-          };
           nix_shell = {
             disabled = false;
-            symbol = "";
-            style = "bg:sapphire";
+            symbol = "";
+            style = "bg:green";
             impure_msg = "impure";
             pure_msg = "pure";
             unknown_msg = "unknown";
-            format = "[[ $symbol( $state) ](fg:crust bg:sapphire)]($style)";
+            format = "[[ $symbol( $state) ](fg:crust bg:green)]($style)";
           };
           time = {
             disabled = false;
