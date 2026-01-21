@@ -72,11 +72,11 @@ _: {
           nix_shell = {
             disabled = false;
             symbol = "";
-            style = "bg:green";
-            impure_msg = "impure";
-            pure_msg = "pure";
-            unknown_msg = "unknown";
-            format = "[[ $symbol( $state) ](fg:crust bg:green)]($style)";
+            style = "fg:crust bg:green";
+            impure_msg = "[impure](fg:crust bg:green)";
+            pure_msg = "[pure](fg:crust bg:green)";
+            unknown_msg = "[unknown](fg:crust bg:green)";
+            format = "[ $symbol $state ]($style)";
           };
           time = {
             disabled = false;
