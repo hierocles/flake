@@ -8,25 +8,25 @@ _: {
           command_timeout = 10000;
           add_newline = true;
           format = builtins.concatStringsSep "" [
-            "[](red)"
+            "[ ](red)"
             "$os"
             "$username"
             "$localip"
-            "[](bg:peach fg:red)"
+            "[ ](bg:peach fg:red)"
             "$directory"
-            "[](bg:yellow fg:peach)"
+            "[ ](bg:yellow fg:peach)"
             "$git_branch"
             "$git_status"
-            "[](fg:yellow bg:green)"
+            "[ ](fg:yellow bg:green)"
             "$nodejs"
             "$python"
-            "[](fg:green bg:sapphire)"
+            "[ ](fg:green bg:sapphire)"
             "$nix_shell"
-            "[](fg:sapphire bg:sky)"
+            "[ ](fg:sapphire bg:sky)"
             "$docker_context"
-            "[](fg:sapphire bg:lavender)"
+            "[ ](fg:sapphire bg:lavender)"
             "$time"
-            "[ ](fg:lavender)"
+            "[ ](fg:lavender)"
             "$cmd_duration"
             "$line_break"
             "$character"
@@ -44,7 +44,7 @@ _: {
           };
           os.symbols = {
             Macos = "󰀵";
-            NixOS = "";
+            NixOS = "";
           };
           username = {
             show_always = true;
@@ -60,9 +60,9 @@ _: {
           };
           directory.substitutions = {
             Documents = "󰈙 ";
-            Downloads = " ";
+            Downloads = " ";
             Music = "󰝚 ";
-            Pictures = " ";
+            Pictures = " ";
             Developer = "󰲋 ";
           };
           git_branch = {
