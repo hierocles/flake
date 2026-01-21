@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.postgres = let
     makeNixosConfig = pkgs: {
       services.postgresql = {

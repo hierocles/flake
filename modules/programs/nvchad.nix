@@ -9,8 +9,8 @@
   flake.aspects.nvchad = let
     overlay = {
       nixpkgs.overlays = [
-        (final: prev: {
-          nvchad = inputs.nix4nvchad.packages."${prev.stdenv.hostPlatform.system}".nvchad;
+        (_final: prev: {
+          inherit (inputs.nix4nvchad.packages."${prev.stdenv.hostPlatform.system}") nvchad;
         })
       ];
     };

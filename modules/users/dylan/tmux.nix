@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.dylan._.tmux = let
     makeHomeConfig = pkgs: {
       # Add packages needed by tmux plugins

@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   flake-file.inputs = {
     nix-init.url = "github:nix-community/nix-init";
   };

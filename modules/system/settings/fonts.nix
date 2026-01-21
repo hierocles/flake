@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.fonts = let
     makeConfig = pkgs: let
       nf = with pkgs.nerd-fonts; [

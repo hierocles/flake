@@ -5,7 +5,7 @@
         enable = true;
         settings = {
           user = {
-            email = config.constants.admin.email;
+            inherit (config.constants.admin) email;
             name = "hierocles";
           };
         };

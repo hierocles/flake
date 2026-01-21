@@ -6,7 +6,7 @@
         bun
         python
         direnv
-        devenv
+        devshell
         llm
         ide
         typescript

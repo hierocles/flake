@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.nom = let
     makeConfig = pkgs: {
       environment.systemPackages = [pkgs.nix-output-monitor];

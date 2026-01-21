@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.python = let
     makeConfig = pkgs: {
       environment.systemPackages = with pkgs; [

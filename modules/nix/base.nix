@@ -25,6 +25,9 @@
     inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules)
   '';
 
+  # Format generated flake.nix with alejandra
+  flake-file.formatter = pkgs: pkgs.alejandra;
+
   systems = [
     "aarch64-darwin"
     "x86_64-linux"

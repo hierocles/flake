@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.direnv = {
     homeManager = {
       programs.direnv = {

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.gpg = let
     makeHomeConfig = pkgs: {
       services.gpg-agent = {

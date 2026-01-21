@@ -3,3 +3,5 @@
 .vscode/
 .github/
 CLAUDE.md
+.mcp.json
+.pre-commit-config.yaml

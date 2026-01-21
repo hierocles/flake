@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.typescript = let
     makeHomeConfig = pkgs: {
       home.packages = with pkgs; [

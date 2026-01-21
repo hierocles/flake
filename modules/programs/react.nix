@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.react = let
     makeHomeConfig = pkgs: {
       home.packages = with pkgs; [

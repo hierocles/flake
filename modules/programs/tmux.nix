@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.tmux = let
     makeConfig = pkgs: {
       environment.systemPackages = [

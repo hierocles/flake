@@ -1,8 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 
   inputs = {
     agenix = {
@@ -32,10 +31,6 @@
     determinate = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
-    };
-    devenv = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:cachix/devenv";
     };
     flake-aspects.url = "github:vic/flake-aspects";
     flake-file.url = "github:vic/flake-file";
@@ -68,7 +63,7 @@
       flake = false;
       url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
     };
+    treefmt-nix.url = "github:numtide/treefmt-nix";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
-
 }

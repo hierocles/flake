@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.nvd = let
     makeConfig = pkgs: {
       environment.systemPackages = [pkgs.nvd];

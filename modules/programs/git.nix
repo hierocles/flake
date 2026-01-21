@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.git = let
     makeConfig = pkgs: {
       environment.systemPackages = [

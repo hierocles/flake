@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects = {aspects, ...}: {
     dylan = {
       includes = with aspects; [

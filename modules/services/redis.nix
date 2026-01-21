@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.redis = let
     makeHomeConfig = pkgs: {
       home.packages = with pkgs; [

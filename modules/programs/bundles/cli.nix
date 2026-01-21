@@ -11,6 +11,7 @@
         nvd
         just
         terminals
+        starship
       ];
       nixos = {};
       darwin = {};

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.aspects.docker = let
     makeHomeConfig = pkgs: {
       home.packages = with pkgs; [

@@ -22,14 +22,14 @@
     };
   in {
     nixpkgs.overlays = [
-      (final: prev: let
+      (_final: prev: let
         llm-agents-pkgs = inputs.llm-agents.packages.${prev.stdenv.hostPlatform.system};
       in {
-        claude-code = llm-agents-pkgs.claude-code;
-        opencode = llm-agents-pkgs.opencode;
-        copilot-cli = llm-agents-pkgs.copilot-cli;
+        inherit (llm-agents-pkgs) claude-code;
+        inherit (llm-agents-pkgs) opencode;
+        inherit (llm-agents-pkgs) copilot-cli;
         #gemini-cli = llm-agents-pkgs.gemini-cli;
-        copilot-language-server = llm-agents-pkgs.copilot-language-server;
+        inherit (llm-agents-pkgs) copilot-language-server;
       })
     ];
     nixos = {pkgs, ...}: makeConfig pkgs;
