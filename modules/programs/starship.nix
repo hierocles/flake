@@ -20,10 +20,6 @@ _: {
             "[ ](fg:yellow bg:green)"
             "$nodejs"
             "$python"
-            "[ ](fg:green bg:sapphire)"
-            "$nix_shell"
-            "[ ](fg:sapphire bg:sky)"
-            "$docker_context"
             "[ ](fg:sapphire bg:lavender)"
             "$time"
             "[ ](fg:lavender)"
@@ -115,7 +111,7 @@ _: {
             vimcmd_visual_symbol = "[❮](bold fg:yellow)";
           };
           cmd_duration = {
-            show_milliseconds = true;
+            show_milliseconds = false;
             format = " in $duration ";
             style = "bg:lavender";
             disabled = false;
