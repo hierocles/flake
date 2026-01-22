@@ -28,6 +28,11 @@
         # WSL doesn't need a traditional bootloader or boot partition
         boot.loader.grub.enable = lib.mkForce false;
         boot.loader.systemd-boot.enable = lib.mkForce false;
+
+        # Enable D-Bus for systemd user sessions (fixes Home Manager activation errors)
+        services.dbus.enable = true;
+        # Enable user lingering so systemd user services start at boot
+        users.users.dylan.linger = true;
         # Connect transposed homeManager configs to the user
         home-manager.users.dylan.imports = [
           inputs.self.modules.homeManager.constants

@@ -12,8 +12,22 @@
         # Exclude: determinate (macOS specific)
         # Exclude: homebrew (macOS specific)
       ];
-      nixos = {
-        programs.nix-ld.enable = true;
+      nixos = {pkgs, ...}: {
+        programs.nix-ld = {
+          enable = true;
+          libraries = with pkgs; [
+            # Core libraries for dynamically linked binaries
+            stdenv.cc.cc.lib
+            zlib
+            openssl
+            curl
+            icu
+            # Additional libraries commonly needed by VS Code extensions
+            libsecret
+            libGL
+            glib
+          ];
+        };
       };
       darwin = {};
       homeManager = {};
