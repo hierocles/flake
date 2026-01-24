@@ -65,6 +65,6 @@
       url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    vscode-server.url = "github:Hyffer/nixos-vscode-server/fix-vsce-sign";
   };
 }
