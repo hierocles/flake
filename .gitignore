@@ -7,3 +7,4 @@ CLAUDE.md
 .pre-commit-config.yaml
 .direnv
 .envrc
+*.vscode-

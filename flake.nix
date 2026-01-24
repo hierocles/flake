@@ -48,6 +48,7 @@
     };
     nix-init.url = "github:nix-community/nix-init";
     nix-mineral.url = "github:cynicsketch/nix-mineral";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix4nvchad = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix4nvchad";
