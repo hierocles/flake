@@ -11,7 +11,6 @@
 
     secrets = {
       url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
-      flake = false;
     };
   };
 

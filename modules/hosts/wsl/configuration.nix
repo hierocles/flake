@@ -17,6 +17,7 @@
         wsl-essentials
         dylan
         wsl._.secrets
+        nixarr
       ];
       nixos = {
         imports = lib.optionals (inputs ? nixos-wsl) [inputs.nixos-wsl.nixosModules.wsl];

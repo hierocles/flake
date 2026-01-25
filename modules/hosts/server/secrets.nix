@@ -1,7 +1,7 @@
 {inputs, ...}: let
   secretsPath = toString inputs.secrets;
 in {
-  flake.aspects.wsl._.secrets = {
+  flake.aspects.server._.secrets = {
     nixos = {
       sops = {
         defaultSopsFile = "${secretsPath}/secrets.yaml";

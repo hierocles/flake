@@ -147,6 +147,7 @@ _: {
             "**/.direnv" = true;
             "**/result" = true;
           };
+          "remote.autoForwardPorts" = false;
         };
         extensions = with pkgs; [
           vscode-marketplace.jnoortheen.nix-ide

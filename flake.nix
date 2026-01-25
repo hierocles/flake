@@ -21,6 +21,10 @@
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
     };
     direnv-instant.url = "github:Mic92/direnv-instant";
+    disko = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/disko";
+    };
     flake-aspects.url = "github:vic/flake-aspects";
     flake-file.url = "github:vic/flake-file";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -40,6 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix4nvchad";
     };
+    nixarr.url = "path:/home/dylan/nixarr";
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-wsl = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,10 +53,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-    secrets = {
-      flake = false;
-      url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
-    };
+    secrets.url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/sops-nix";
