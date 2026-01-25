@@ -123,16 +123,12 @@ _: {
             "**/.direnv" = true;
             "**/result" = true;
           };
-          "git.autoRepositoryDetection" = "openEditors";
-          "git.repositoryScanMaxDepth" = 1;
-          "git.path" = "${pkgs.git}/bin/git";
-          "git.autorefresh" = false;
-          "git.detectSubmodules" = false;
-          "git.detectSubmodulesLimit" = 1;
-          "terminal.integrated.inheritEnv" = false;
         };
         extensions = with pkgs; [
           vscode-marketplace.jnoortheen.nix-ide
+          vscode-marketplace.anthropic.claude-code
+          vscode-marketplace.yzhang.markdown-all-in-one
+          vscode-marketplace.gruntfuggly.todo-tree
         ];
       };
     };
