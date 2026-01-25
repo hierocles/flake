@@ -35,6 +35,7 @@
             inputs.self.modules.homeManager.dylan
           ];
         };
+        networking.hostName = "wsl";
       };
     };
   };
