@@ -13,6 +13,11 @@
       overwriteBackup = true;
     };
   };
+  hm-extra-args = {
+    home-manager.extraSpecialArgs = {
+      inherit (inputs) self;
+    };
+  };
 in {
   flake-file.inputs = {
     home-manager.url = "github:nix-community/home-manager/master";
@@ -28,14 +33,14 @@ in {
     darwin = {
       imports =
         lib.optionals (inputs ? home-manager) [inputs.home-manager.darwinModules.home-manager]
-        ++ [hm-config];
+        ++ [hm-config hm-extra-args];
       home-manager.sharedModules =
         lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant];
     };
     nixos = {
       imports =
         lib.optionals (inputs ? home-manager) [inputs.home-manager.nixosModules.home-manager]
-        ++ [hm-config];
+        ++ [hm-config hm-extra-args];
       home-manager.sharedModules =
         lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant];
     };

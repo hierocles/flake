@@ -1,6 +1,15 @@
 _: {
   flake.aspects.dylan._.ide = {
-    homeManager = {pkgs, ...}: {
+    homeManager = {
+      pkgs,
+      osConfig,
+      self,
+      ...
+    }: let
+      flake = "(builtins.getFlake \"${self}\")";
+      system = "${flake}.nixosConfigurations.${osConfig.networking.hostName}";
+      home = "${system}.options.home-manager.users.type";
+    in {
       # Sync Nix-managed VS Code extensions to .vscode-server for Remote WSL
       home.activation.syncVscodeExtensions = {
         after = ["writeBoundary"];
@@ -70,6 +79,20 @@ _: {
             "nixd" = {
               "formatting" = {
                 "command" = ["${pkgs.alejandra}/bin/alejandra"];
+              };
+              "nixpkgs" = {
+                "expr" = "import ${flake}.inputs.nixpkgs {}";
+              };
+              "options" = {
+                "nixos" = {
+                  "expr" = "${system}.options";
+                };
+                "home-manager" = {
+                  "expr" = "${home}.getSubOptions []";
+                };
+                "darwin" = {
+                  "expr" = "${flake}.darwinConfigurations.macbook.options";
+                };
               };
             };
           };
