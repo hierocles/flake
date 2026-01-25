@@ -79,6 +79,7 @@ SETTINGS_SRC="$HOME/.config/Code/User/settings.json"
 SETTINGS_DST="$HOME/.vscode-server/data/Machine/settings.json"
 if [[ -f "$SETTINGS_SRC" ]]; then
     mkdir -p "$(dirname "$SETTINGS_DST")"
+    rm -f "$SETTINGS_DST"
     cp "$SETTINGS_SRC" "$SETTINGS_DST"
     echo "→ settings.json (synced)"
 fi

@@ -48,6 +48,7 @@ _: {
           # Sync settings to .vscode-server for Remote WSL
           if [[ -f "$HOME/.config/Code/User/settings.json" ]]; then
             run mkdir -p "$HOME/.vscode-server/data/Machine"
+            run rm -f "$HOME/.vscode-server/data/Machine/settings.json"
             run cp "$HOME/.config/Code/User/settings.json" "$HOME/.vscode-server/data/Machine/settings.json"
           fi
         '';
