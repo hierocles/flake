@@ -12,6 +12,9 @@
       users.users.dylan.openssh.authorizedKeys.keys = pubKeys;
     };
     homeManager = {
+      # Ensure the SSH sockets directory exists for ControlMaster
+      home.file.".ssh/sockets/.keep".text = "";
+
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
