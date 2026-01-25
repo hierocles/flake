@@ -53,6 +53,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix4nvchad";
     };
+    nixarr.url = "github:nix-media-server/nixarr/dev";
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-wsl = {
       inputs.nixpkgs.follows = "nixpkgs";

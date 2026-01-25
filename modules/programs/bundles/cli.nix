@@ -12,6 +12,8 @@
         just
         terminals
         starship
+        nix-init
+        tqm
       ];
       nixos = {};
       darwin = {};
