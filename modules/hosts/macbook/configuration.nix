@@ -4,6 +4,7 @@
       includes = with aspects; [
         system-essentials
         dylan
+        macbook._.secrets
       ];
       darwin = {
         networking.hostName = "macbook";

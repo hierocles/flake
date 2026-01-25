@@ -4,16 +4,8 @@
   ...
 }: {
   flake-file.inputs = {
-    agenix = {
-      url = "github:yaxitech/ragenix"; # Drop-in Rust replacement for Agenix
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    agenix-shell = {
-      url = "github:aciceri/agenix-shell";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,26 +15,10 @@
     };
   };
 
-  imports =
-    lib.optionals (inputs ? agenix-rekey) [inputs.agenix-rekey.flakeModule]
-    ++ lib.optionals (inputs ? agenix-shell) [inputs.agenix-shell.flakeModules.default];
-
   flake.aspects.secrets = {
-    description = "Agenix secrets management";
-    nixos = {pkgs, ...}: {
-      imports = lib.optionals (inputs ? agenix) [inputs.agenix.nixosModules.default];
-      environment.systemPackages = [
-        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
-    };
-    darwin = {pkgs, ...}: {
-      imports = lib.optionals (inputs ? agenix) [inputs.agenix.darwinModules.default];
-      environment.systemPackages = [
-        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
-    };
-    homeManager = {
-      imports = lib.optionals (inputs ? agenix) [inputs.agenix.homeManagerModules.default];
-    };
+    description = "Sops-nix secrets management";
+    nixos.imports = lib.optionals (inputs ? sops-nix) [inputs.sops-nix.nixosModules.sops];
+    darwin.imports = lib.optionals (inputs ? sops-nix) [inputs.sops-nix.darwinModules.sops];
+    homeManager.imports = lib.optionals (inputs ? sops-nix) [inputs.sops-nix.homeManagerModules.sops];
   };
 }

@@ -14,6 +14,7 @@
         starship
         nix-init
         tqm
+        secrets-management
       ];
       nixos = {};
       darwin = {};

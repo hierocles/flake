@@ -8,6 +8,7 @@
         home-manager
         secrets
         fonts
+        ssh
         # Exclude: mineral (may set boot config)
         # Exclude: determinate (macOS specific)
         # Exclude: homebrew (macOS specific)

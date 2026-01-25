@@ -10,6 +10,7 @@
         determinate
         homebrew
         fonts
+        ssh
       ];
       nixos = {};
       darwin = {};

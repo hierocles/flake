@@ -35,14 +35,16 @@ in {
         lib.optionals (inputs ? home-manager) [inputs.home-manager.darwinModules.home-manager]
         ++ [hm-config hm-extra-args];
       home-manager.sharedModules =
-        lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant];
+        lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant]
+        ++ lib.optionals (inputs ? sops-nix) [inputs.sops-nix.homeManagerModules.sops];
     };
     nixos = {
       imports =
         lib.optionals (inputs ? home-manager) [inputs.home-manager.nixosModules.home-manager]
         ++ [hm-config hm-extra-args];
       home-manager.sharedModules =
-        lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant];
+        lib.optionals (inputs ? direnv-instant) [inputs.direnv-instant.homeModules.direnv-instant]
+        ++ lib.optionals (inputs ? sops-nix) [inputs.sops-nix.homeManagerModules.sops];
     };
   };
 }

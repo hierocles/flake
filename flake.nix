@@ -4,18 +4,6 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 
   inputs = {
-    agenix = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:yaxitech/ragenix";
-    };
-    agenix-rekey = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:oddlama/agenix-rekey";
-    };
-    agenix-shell = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:aciceri/agenix-shell";
-    };
     brew-api = {
       flake = false;
       url = "github:BatteredBunny/brew-api";
@@ -46,14 +34,12 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
       url = "github:LnL7/nix-darwin";
     };
-    nix-init.url = "github:nix-community/nix-init";
     nix-mineral.url = "github:cynicsketch/nix-mineral";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix4nvchad = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix4nvchad";
     };
-    nixarr.url = "github:nix-media-server/nixarr/dev";
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-wsl = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -65,6 +51,10 @@
     secrets = {
       flake = false;
       url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
+    };
+    sops-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Mic92/sops-nix";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
     vscode-server.url = "github:Hyffer/nixos-vscode-server/fix-vsce-sign";

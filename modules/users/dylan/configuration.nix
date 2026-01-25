@@ -10,6 +10,7 @@ _: {
         dylan._.tmux
         dylan._.nvchad
         dylan._.ide
+        dylan._.secrets
       ];
       nixos = {pkgs, ...}: {
         programs.fish.enable = true;
