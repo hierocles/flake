@@ -23,7 +23,10 @@
 
         vpn = {
           enable = true;
-          accessibleFrom = [inputs.secrets.networking.subnets.masks.lan];
+          accessibleFrom = [
+            inputs.secrets.networking.subnets.lan.mask
+            "127.0.0.1"
+          ];
           wgConf = config.sops.secrets."vpn/wgconf".path;
           vpnTestService = {
             enable = true;

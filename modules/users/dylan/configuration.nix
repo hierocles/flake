@@ -12,11 +12,15 @@ _: {
         dylan._.ide
         dylan._.secrets
       ];
-      nixos = {pkgs, ...}: {
+      nixos = {
+        pkgs,
+        config,
+        ...
+      }: {
         programs.fish.enable = true;
         users.users.dylan = {
           isNormalUser = true;
-          initialPassword = "ChangeMe";
+          hashedPasswordFile = config.sops.secrets."passwords/dylan".path;
           shell = pkgs.fish;
           extraGroups = ["wheel"];
         };

@@ -52,6 +52,7 @@
         warn-dirty = false
         keep-outputs = true
       '';
+      users.mutableUsers = false;
     };
 
     darwin = {pkgs, ...}: {
