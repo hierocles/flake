@@ -60,10 +60,17 @@
         };
         qbittorrent = {
           enable = true;
-          openFirewall = true;
           vpn.enable = true;
           qui.enable = true;
           privateTrackers.disableDhtPex = true;
+        };
+
+        # Temp enable in order to transfer torrents to qbt
+        transmission = {
+          enable = true;
+          peerPort = inputs.secrets.networking.vpn.port;
+          flood.enable = true;
+          vpn.enable = true;
         };
       };
 
