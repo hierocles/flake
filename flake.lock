@@ -614,14 +614,18 @@
         "website-builder": "website-builder"
       },
       "locked": {
-        "lastModified": 1769373266,
-        "narHash": "sha256-MoRPqtKPGPklTksS4NUUUkaGwREF459frKrcXeH/IQo=",
-        "path": "/home/dylan/nixarr",
-        "type": "path"
+        "lastModified": 1769394640,
+        "narHash": "sha256-5Ebs6OB4axiSCa+2teLzt6pvAq/3LaJVVCSLhZ2A95c=",
+        "owner": "hierocles",
+        "repo": "nixarr-1",
+        "rev": "703b30b32a517f709b03ad0f6c2861f3697c3495",
+        "type": "github"
       },
       "original": {
-        "path": "/home/dylan/nixarr",
-        "type": "path"
+        "owner": "hierocles",
+        "ref": "jellyfin-10.11.6-hash",
+        "repo": "nixarr-1",
+        "type": "github"
       }
     },
     "nixos-cli": {

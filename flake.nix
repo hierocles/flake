@@ -44,7 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix4nvchad";
     };
-    nixarr.url = "path:/home/dylan/nixarr";
+    nixarr.url = "github:hierocles/nixarr-1/jellyfin-10.11.6-hash";
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-wsl = {
       inputs.nixpkgs.follows = "nixpkgs";
