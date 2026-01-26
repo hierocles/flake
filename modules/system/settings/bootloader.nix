@@ -1,7 +1,7 @@
 {
   flake.aspects.bootloader.nixos = {
     boot.loader = {
-      systemd.boot.enable = true;
+      systemd-boot.enable = true;
     };
   };
 }
