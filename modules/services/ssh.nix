@@ -3,7 +3,7 @@
     nixos = {
       services.openssh = {
         enable = true;
-        ports = [22];
+        ports = [2222]; # Needs to be different than endlessh
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;

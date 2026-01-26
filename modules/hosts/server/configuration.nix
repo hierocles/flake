@@ -4,6 +4,7 @@
       description = "Home server";
       includes = with aspects; [
         system-essentials
+        bootloader
         disko
         dylan
         nixarr
@@ -19,6 +20,7 @@
           ];
         };
         networking.hostName = "server";
+        i18n.defaultLocale = "en_US.UTF-8";
       };
     };
   };
