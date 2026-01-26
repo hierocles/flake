@@ -154,6 +154,7 @@ _: {
           vscode-marketplace.anthropic.claude-code
           vscode-marketplace.yzhang.markdown-all-in-one
           vscode-marketplace.gruntfuggly.todo-tree
+          vscode-marketplace.skellock.just
         ];
       };
     };
