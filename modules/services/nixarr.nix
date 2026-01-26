@@ -4,8 +4,8 @@
   ...
 }: {
   flake-file.inputs = {
-    # Jellyfin hash mismatch fixed locally, need to submit PR
-    nixarr.url = "path:/home/dylan/nixarr";
+    # Use until upstream is fixed
+    nixarr.url = "github:hierocles/nixarr-1/jellyfin-10.11.6-hash";
   };
 
   flake.aspects.nixarr = {

@@ -10,5 +10,5 @@ build FLAKE=current_host:
 rebuild FLAKE=current_host:
     doas nixos apply .#{{FLAKE}}
 
-switch:
-    doas nixos generation switch
+switch GENERATION *FLAGS:
+    doas nixos generation switch {{FLAGS}} {{GENERATION}}
