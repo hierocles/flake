@@ -29,7 +29,7 @@
           wgConf = config.sops.secrets."vpn/wgconf".path;
           vpnTestService = {
             enable = true;
-            port = inputs.secrets.networking.vpn.port;
+            port = inputs.secrets.networking.ports.vpn;
           };
         };
 
@@ -67,7 +67,7 @@
         # Temp enable in order to transfer torrents to qbt
         transmission = {
           enable = true;
-          peerPort = inputs.secrets.networking.vpn.port;
+          peerPort = inputs.secrets.networking.ports.vpn;
           flood.enable = true;
           vpn.enable = true;
         };

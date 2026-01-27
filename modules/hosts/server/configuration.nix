@@ -8,6 +8,7 @@
         disko
         dylan
         nixarr
+        transmission-to-qbittorrent
         server._.disks
         server._.hardware
         server._.secrets
