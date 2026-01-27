@@ -614,17 +614,17 @@
         "website-builder": "website-builder"
       },
       "locked": {
-        "lastModified": 1769394640,
+        "lastModified": 1769453636,
         "narHash": "sha256-5Ebs6OB4axiSCa+2teLzt6pvAq/3LaJVVCSLhZ2A95c=",
-        "owner": "hierocles",
-        "repo": "nixarr-1",
-        "rev": "703b30b32a517f709b03ad0f6c2861f3697c3495",
+        "owner": "nix-media-server",
+        "repo": "nixarr",
+        "rev": "3716363f3e759acf50aaa9aeda5e3a5269679da8",
         "type": "github"
       },
       "original": {
-        "owner": "hierocles",
-        "ref": "jellyfin-10.11.6-hash",
-        "repo": "nixarr-1",
+        "owner": "nix-media-server",
+        "ref": "dev",
+        "repo": "nixarr",
         "type": "github"
       }
     },
