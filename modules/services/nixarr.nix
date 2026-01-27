@@ -4,8 +4,7 @@
   ...
 }: {
   flake-file.inputs = {
-    # Use until upstream is fixed
-    nixarr.url = "github:hierocles/nixarr-1/jellyfin-10.11.6-hash";
+    nixarr.url = "github:nix-media-server/nixarr/dev";
   };
 
   flake.aspects.nixarr = {
