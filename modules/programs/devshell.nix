@@ -15,6 +15,8 @@ _: {
         prettier
         ruff
         black
+
+        jq
       ];
     };
   };
