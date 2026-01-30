@@ -1,10 +1,9 @@
-_: {
+{inputs, ...}: {
   flake.aspects.samba = {
     nixos = {
       pkgs,
       lib,
       config,
-      inputs,
       ...
     }: {
       options.services.samba.customShares.media.validUsers = lib.mkOption {
