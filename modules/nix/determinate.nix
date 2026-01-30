@@ -40,8 +40,8 @@ in {
     description = "Use Determinate Nix 3";
     nixos = {
       imports = lib.optionals (inputs ? determinate) [inputs.determinate.nixosModules.default];
-      nix.enable = false;
-      determinate.nix.settings =
+      # Determinate NixOS module intercepts nix.settings and moves them to nix.custom.conf
+      nix.settings =
         commonSettings
         // {
           extra-substituters = [
@@ -61,7 +61,7 @@ in {
     darwin = {
       imports = lib.optionals (inputs ? determinate) [inputs.determinate.darwinModules.default];
       nix.enable = false;
-      determinate.nix.settings =
+      determinateNix.customSettings =
         commonSettings
         // {
           eval-cores = 0;
