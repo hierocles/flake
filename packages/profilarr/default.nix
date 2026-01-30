@@ -6,8 +6,7 @@
   git,
   cacert,
   makeWrapper,
-}:
-let
+}: let
   pname = "profilarr";
   version = "2.0.0-unstable";
 
@@ -15,7 +14,7 @@ let
     owner = "Dictionarry-Hub";
     repo = "Profilarr";
     rev = "v2";
-    hash = "sha256-N/9XlUPWOewUlsHp19BbsW74mabM2VtBlFeYv8V1cdk=";
+    hash = "sha256-IUpcHXHO7Q3d92JbkvbqxN03wxcrjtRegScJZxc1n+g=";
   };
 
   # Build the binary in a FOD (allowed network access)
