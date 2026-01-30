@@ -14,7 +14,7 @@
         cursor-agent
         #gemini-cli # Not building right now, Numtide needs to update
         ccstatusline
-        ccusage
+        #ccusage # Causing build error
         copilot-language-server
       ];
     in {
