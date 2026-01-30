@@ -12,6 +12,7 @@
 
   flake.aspects.determinate = {
     description = "Use Determinate Nix 3";
+    nixos.imports = lib.optionals (inputs ? determinate) [inputs.determinate.nixosModules.default];
     darwin = {
       imports = lib.optionals (inputs ? determinate) [inputs.determinate.darwinModules.default];
       nix.enable = false;
