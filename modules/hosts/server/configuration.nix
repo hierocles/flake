@@ -8,6 +8,7 @@
         disko
         dylan
         nixarr
+        profilarr
         transmission-to-qbittorrent
         server._.disks
         server._.hardware
@@ -22,6 +23,12 @@
         };
         networking.hostName = "server";
         i18n.defaultLocale = "en_US.UTF-8";
+
+        services.profilarr = {
+          enable = true;
+          openFirewall = true;
+          port = 8912;
+        };
       };
     };
   };
