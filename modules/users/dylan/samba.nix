@@ -9,7 +9,7 @@ _: {
 
       system.activationScripts = lib.mkIf config.services.samba.enable {
         init_smbpasswd.text = ''
-          /run/current-system/sw/bin/printf "$(/run/current-system/sw/bin/cat ${config.sops.secrets.passwords.dylan.path})\n$(/run/current-system/sw/bin/cat ${config.sops.secrets.passwords.dylan.path})\n" | /run/current-system/sw/bin/smbpasswd -sa dylan
+          /run/current-system/sw/bin/printf "$(/run/current-system/sw/bin/cat ${config.sops.secrets."passwords/dylan".path})\n$(/run/current-system/sw/bin/cat ${config.sops.secrets."passwords/dylan".path})\n" | /run/current-system/sw/bin/smbpasswd -sa dylan
         '';
       };
     };
