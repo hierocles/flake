@@ -41,5 +41,10 @@
         ];
       };
     };
+
+    # Build ISO image from a NixOS configuration
+    # Usage: nix build .#packages.x86_64-linux.iso
+    mkIsoImage = system: name:
+      (inputs.self.lib.mkNixos system name).${name}.config.system.build.isoImage;
   };
 }

@@ -16,6 +16,10 @@
       };
       url = "github:BatteredBunny/brew-nix";
     };
+    deploy-rs = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:serokell/deploy-rs";
+    };
     determinate = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
@@ -45,6 +49,10 @@
       url = "github:nix-community/nix4nvchad";
     };
     nixarr.url = "github:nix-media-server/nixarr/dev";
+    nixos-anywhere = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixos-anywhere";
+    };
     nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-wsl = {
       inputs.nixpkgs.follows = "nixpkgs";
