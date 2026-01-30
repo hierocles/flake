@@ -10,7 +10,7 @@
     };
 
     secrets = {
-      url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
+      url = "git+ssh://git@github.com/hierocles/secrets.git";
     };
   };
 

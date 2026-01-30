@@ -61,7 +61,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-    secrets.url = "git+ssh://git@github.com/hierocles/secrets.git?shallow=1";
+    secrets.url = "git+ssh://git@github.com/hierocles/secrets.git";
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/sops-nix";
