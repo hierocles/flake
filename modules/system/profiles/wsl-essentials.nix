@@ -9,8 +9,8 @@
         secrets
         fonts
         ssh
+        determinate
         # Exclude: mineral (may set boot config)
-        # Exclude: determinate (macOS specific)
         # Exclude: homebrew (macOS specific)
       ];
       nixos = {pkgs, ...}: {

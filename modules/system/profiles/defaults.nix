@@ -5,53 +5,11 @@
         inherit (final) config system;
       };
     };
-
-    commonSubstituters = [
-      # high priority since it's almost always used
-      "https://cache.nixos.org?priority=10"
-      "https://install.determinate.systems"
-      "https://nix-community.cachix.org"
-      "https://cache.numtide.com"
-    ];
-
-    commonTrustedPublicKeys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM"
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-    ];
-
-    commonExperimentalFeatures = [
-      "nix-command"
-      "flakes"
-    ];
   in {
     nixos = {
       nixpkgs.overlays = [stableOverlay];
       nixpkgs.config.allowUnfree = true;
       system.stateVersion = "25.11";
-      nix.settings = {
-        substituters =
-          commonSubstituters
-          ++ [
-            "https://watersucks.cachix.org"
-          ];
-        trusted-public-keys =
-          commonTrustedPublicKeys
-          ++ [
-            "watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="
-          ];
-        experimental-features = commonExperimentalFeatures;
-        download-buffer-size = 1024 * 1024 * 1024;
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
-      };
-      nix.extraOptions = ''
-        warn-dirty = false
-        keep-outputs = true
-      '';
       users.mutableUsers = false;
     };
 
@@ -59,19 +17,6 @@
       nixpkgs.config.allowUnfree = true;
       system.stateVersion = 6;
       nixpkgs.overlays = [stableOverlay];
-      determinate-nix.customSettings = {
-        eval-cores = 0;
-        flake-registry = "";
-        lazy-trees = true;
-        warn-dirty = false;
-        experimental-features = commonExperimentalFeatures;
-        extra-experimental-features = [
-          "build-time-fetch-tree"
-          "parallel-eval"
-        ];
-        substituters = commonSubstituters;
-        trusted-public-keys = commonTrustedPublicKeys;
-      };
       environment.systemPackages = with inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}; [
         darwin-option
         darwin-rebuild
