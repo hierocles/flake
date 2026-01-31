@@ -8,5 +8,6 @@ CLAUDE.md
 .direnv
 .envrc
 *.vscode-*
-iso-output/
+iso-output
 extra-files/
+result
