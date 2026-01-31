@@ -1,10 +1,8 @@
-{inputs, ...}: let
-  secretsPath = toString inputs.secrets;
-in {
+{inputs, ...}: {
   flake.aspects.macbook._.secrets = {
     darwin = {
       sops = {
-        defaultSopsFile = "${secretsPath}/secrets.yaml";
+        defaultSopsFile = "${inputs.secrets}/secrets.yaml";
         validateSopsFiles = false;
 
         age = {
