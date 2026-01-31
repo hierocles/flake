@@ -12,3 +12,6 @@ rebuild FLAKE=current_host:
 
 switch GENERATION *FLAGS:
     doas nixos generation switch {{FLAGS}} {{GENERATION}}
+
+journal SERVICE:
+    doas journalctl -u {{SERVICE}} -b -e -x
