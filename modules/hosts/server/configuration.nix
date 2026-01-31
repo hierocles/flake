@@ -3,7 +3,7 @@
     server = {
       description = "Home server";
       includes = with aspects; [
-        system-essentials
+        server-essentials
         bootloader
         disko
         dylan
