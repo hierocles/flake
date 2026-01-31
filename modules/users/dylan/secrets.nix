@@ -1,11 +1,13 @@
 {inputs, ...}: {
   flake.aspects.dylan._.secrets = {
     # NixOS-level secrets (for hashedPasswordFile, etc.)
-    nixos = {
+    nixos = {config, ...}: {
       sops = {
         defaultSopsFile = "${inputs.secrets}/secrets.yaml";
         secrets."passwords/dylan".neededForUsers = true;
+        secrets."passwords/root".neededForUsers = true;
       };
+      users.users.root.hashedPasswordFile = config.sops.secrets."passwords/root".path;
     };
 
     # Home-manager secrets (for SSH keys, etc.)
