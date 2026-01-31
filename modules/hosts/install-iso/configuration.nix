@@ -66,6 +66,10 @@
 
         # Include the flake in the ISO for offline installation
         environment.etc."nixos-flake".source = inputs.self;
+
+        # Include extra-files (SSH host keys, etc.) in the ISO
+        # These will be copied to /mnt during installation
+        environment.etc."extra-files".source = ../../../extra-files;
       };
     };
 
@@ -168,11 +172,31 @@
           read -p "Enter NixOS configuration name [server]: " CONFIG_NAME
           CONFIG_NAME=''${CONFIG_NAME:-server}
 
+          # Check for extra-files directory (SSH host keys, etc.)
+          # Default to bundled extra-files if available
+          EXTRA_FILES=""
+          if [[ -d "/etc/extra-files" ]]; then
+            EXTRA_FILES="/etc/extra-files"
+            echo ""
+            echo -e "''${GREEN}Found bundled extra-files (SSH host keys, etc.)''${NC}"
+          else
+            echo ""
+            echo -e "''${YELLOW}Extra files (SSH host keys, secrets, etc.):''${NC}"
+            echo "If you have an extra-files directory with files to copy to the system"
+            echo "(e.g., /mnt/usb/extra-files with etc/ssh/ssh_host_ed25519_key),"
+            echo "enter the path now. The directory structure should mirror the target."
+            echo ""
+            read -p "Extra files path (leave empty to skip): " EXTRA_FILES
+          fi
+
           echo ""
           echo -e "''${YELLOW}Installation Summary:''${NC}"
           echo "  Disk: ''$DISK"
           echo "  Flake: ''$FLAKE_URI"
           echo "  Configuration: ''$CONFIG_NAME"
+          if [[ -n "''$EXTRA_FILES" ]]; then
+            echo "  Extra files: ''$EXTRA_FILES"
+          fi
           echo ""
           read -p "Press Enter to start installation or Ctrl+C to cancel..."
 
@@ -184,6 +208,19 @@
             --mode disko \
             --flake "''$FLAKE_URI#''$CONFIG_NAME" \
             --disk nvme "''$DISK"
+
+          # Copy extra files if provided (SSH host keys, etc.)
+          if [[ -n "''$EXTRA_FILES" && -d "''$EXTRA_FILES" ]]; then
+            echo ""
+            echo -e "''${GREEN}Copying extra files to /mnt...''${NC}"
+            cp -rv "''$EXTRA_FILES"/* /mnt/
+            # Fix SSH key permissions
+            if [[ -f /mnt/etc/ssh/ssh_host_ed25519_key ]]; then
+              chmod 600 /mnt/etc/ssh/ssh_host_ed25519_key
+              chmod 644 /mnt/etc/ssh/ssh_host_ed25519_key.pub 2>/dev/null || true
+              echo -e "''${GREEN}SSH host keys installed''${NC}"
+            fi
+          fi
 
           echo ""
           echo -e "''${GREEN}Installing NixOS...''${NC}"
