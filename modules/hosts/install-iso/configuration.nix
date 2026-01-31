@@ -14,7 +14,27 @@
         install-iso._.install-script
       ];
 
-      nixos = {
+      nixos = {pkgs, ...}: let
+        # Decrypt SSH host keys at build time using sops
+        # The build machine must have access to decrypt (via age key or SSH key)
+        extraFiles = pkgs.runCommand "extra-files" {
+          nativeBuildInputs = [pkgs.sops];
+          SOPS_AGE_KEY_FILE =
+            if builtins.pathExists /home/dylan/.config/sops/age/keys.txt
+            then /home/dylan/.config/sops/age/keys.txt
+            else null;
+        } ''
+          mkdir -p $out/etc/ssh
+
+          # Decrypt SSH host key from sops secrets (nested under private_keys)
+          sops -d --extract '["private_keys"]["server_ssh_host_key"]' ${inputs.secrets}/secrets.yaml > $out/etc/ssh/ssh_host_ed25519_key
+          chmod 600 $out/etc/ssh/ssh_host_ed25519_key
+
+          # Derive public key from private key
+          ${pkgs.openssh}/bin/ssh-keygen -y -f $out/etc/ssh/ssh_host_ed25519_key > $out/etc/ssh/ssh_host_ed25519_key.pub
+          chmod 644 $out/etc/ssh/ssh_host_ed25519_key.pub
+        '';
+      in {
         imports = [
           "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           "${inputs.nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
@@ -68,8 +88,8 @@
         environment.etc."nixos-flake".source = inputs.self;
 
         # Include extra-files (SSH host keys, etc.) in the ISO
-        # These will be copied to /mnt during installation
-        environment.etc."extra-files".source = ../../../extra-files;
+        # Decrypted at build time from sops secrets
+        environment.etc."extra-files".source = extraFiles;
       };
     };
 
