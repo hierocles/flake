@@ -12,6 +12,10 @@
 
     # Home-manager secrets (for SSH keys, etc.)
     homeManager = {config, ...}: {
+      home.file.".config/sops/age/keys.txt" = {
+        source = "${inputs.secrets}/age-keys.txt";
+        mode = "0600";
+      };
       sops = {
         age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         defaultSopsFile = "${inputs.secrets}/secrets.yaml";
