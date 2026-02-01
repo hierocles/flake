@@ -3,7 +3,7 @@
     # NixOS-level secrets (for hashedPasswordFile, etc.)
     nixos = {config, ...}: {
       sops = {
-        defaultSopsFile = "${inputs.secrets}/secrets.yaml";
+        defaultSopsFile = inputs.secrets.secrets-file;
         secrets."passwords/dylan".neededForUsers = true;
         secrets."passwords/root".neededForUsers = true;
       };
@@ -18,7 +18,7 @@
       '';
       sops = {
         age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-        defaultSopsFile = "${inputs.secrets}/secrets.yaml";
+        defaultSopsFile = inputs.secrets.secrets-file;
         secrets."private_keys/dylan" = {
           path = "${config.home.homeDirectory}/.ssh/id_ed25519";
           mode = "0400";
