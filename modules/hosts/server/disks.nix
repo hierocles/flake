@@ -22,12 +22,6 @@
       ];
 
       boot.zfs.extraPools = ["media"];
-
-      fileSystems."/mnt/media" = {
-        device = "media";
-        fsType = "zfs";
-        options = ["zfsutil" "nofail" "x-systemd.requires=zfs-import.target"];
-      };
     };
   };
 }
