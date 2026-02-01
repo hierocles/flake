@@ -81,14 +81,6 @@
           qui.enable = true;
           privateTrackers.disableDhtPex = true;
         };
-
-        # Temp enable in order to transfer torrents to qbt
-        transmission = {
-          enable = true;
-          peerPort = inputs.secrets.networking.ports.vpn;
-          flood.enable = true;
-          vpn.enable = true;
-        };
       };
 
       services.flaresolverr.enable = true;
