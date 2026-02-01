@@ -15,6 +15,7 @@
         server._.disks
         server._.hardware
         server._.secrets
+        server._.install-script
       ];
       nixos = {
         home-manager.users.dylan = {
