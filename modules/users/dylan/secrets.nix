@@ -12,7 +12,7 @@
 
     # Home-manager secrets (for SSH keys, etc.)
     homeManager = {config, ...}: {
-      home.file.".config/sops/age/keys.txt".source = "${inputs.secrets}/age-keys.txt";
+      home.file.".config/sops/age/keys.txt".source = inputs.secrets.age-key-path;
       home.activation.fixSopsKeyPermissions = config.lib.dag.entryAfter ["writeBoundary"] ''
         chmod 600 ${config.home.homeDirectory}/.config/sops/age/keys.txt
       '';

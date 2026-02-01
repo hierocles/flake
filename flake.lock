@@ -1206,11 +1206,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1769925364,
-        "narHash": "sha256-UQ10qcrCUyoPTW52Ep77v2WpDQeT5B+DguIGFmyeVe8=",
+        "lastModified": 1769925890,
+        "narHash": "sha256-fbRNwod5c3AH1fuXseJssjdvqXdc/s1egtab/Bi6WBo=",
         "ref": "refs/heads/main",
-        "rev": "ff6e24bed04996fffb40bf633f748cde44502f36",
-        "revCount": 19,
+        "rev": "7e3a67875ac3239c82e42d1355c32cbbaa412f71",
+        "revCount": 20,
         "type": "git",
         "url": "ssh://git@github.com/hierocles/secrets.git"
       },
