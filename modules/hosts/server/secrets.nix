@@ -15,6 +15,7 @@
           "vpn/wgconf" = {
             mode = "0644";
             path = "/var/lib/secrets/wireguard/wg0.conf";
+            owner = "root";
           };
         };
       };
