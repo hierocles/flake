@@ -136,7 +136,6 @@ _: {
             "**/.git/objects/**" = true;
             "**/.git/subtree-cache/**" = true;
             "**/.direnv/**" = true;
-            "**/result/**" = true;
             "**/.vscode-server/**" = true;
           };
           "files.exclude" = {
@@ -145,7 +144,6 @@ _: {
           };
           "search.exclude" = {
             "**/.direnv" = true;
-            "**/result" = true;
           };
           "remote.autoForwardPorts" = false;
         };
