@@ -32,9 +32,18 @@
           };
         };
 
-        autobrr.enable = true;
-        bazarr.enable = true;
-        radarr.enable = true;
+        autobrr = {
+          enable = true;
+          openFirewall = true;
+        };
+        bazarr = {
+          enable = true;
+          openFirewall = true;
+        };
+        radarr = {
+          enable = true;
+          openFirewall = true;
+        };
         # Need to override sqlite package until v5 stable is released
         # See: https://github.com/Sonarr/Sonarr/issues/8249#issuecomment-3649898919
         sonarr = let
@@ -47,11 +56,21 @@
           });
         in {
           enable = true;
+          openFirewall = true;
           package = pkgs.sonarr.override {sqlite = sqlite-3-50;};
         };
-        prowlarr.enable = true;
-        plex.enable = true;
-        jellyseerr.enable = true;
+        prowlarr = {
+          enable = true;
+          openFirewall = true;
+        };
+        plex = {
+          enable = true;
+          openFirewall = true;
+        };
+        jellyseerr = {
+          enable = true;
+          openFirewall = true;
+        };
         recyclarr = {
           enable = true;
           configFile = ./recyclarr.yaml;
