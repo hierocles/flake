@@ -2,7 +2,7 @@
   flake.aspects.wsl._.secrets = {
     nixos = {
       sops = {
-        defaultSopsFile = inputs.secrets.secrets-file;
+        defaultSopsFile = "${inputs.secrets.outPath}/secrets.yaml";
         validateSopsFiles = false;
 
         age = {

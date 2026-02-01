@@ -2,7 +2,7 @@
   flake.aspects.macbook._.secrets = {
     darwin = {
       sops = {
-        defaultSopsFile = inputs.secrets.secrets-file;
+        defaultSopsFile = "${inputs.secrets.outPath}/secrets.yaml";
         validateSopsFiles = false;
 
         age = {

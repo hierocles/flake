@@ -3,7 +3,7 @@
     # NixOS-level secrets (for hashedPasswordFile, etc.)
     nixos = {config, ...}: {
       sops = {
-        defaultSopsFile = inputs.secrets.secrets-file;
+        defaultSopsFile = "${inputs.secrets.outPath}/secrets.yaml";
         secrets."passwords/dylan".neededForUsers = true;
         secrets."passwords/root".neededForUsers = true;
       };
@@ -12,13 +12,13 @@
 
     # Home-manager secrets (for SSH keys, etc.)
     homeManager = {config, ...}: {
-      home.file.".config/sops/age/keys.txt".source = inputs.secrets.age-key-path;
+      home.file.".config/sops/age/keys.txt".source = "${inputs.secrets.outPath}/age-keys.txt";
       home.activation.fixSopsKeyPermissions = config.lib.dag.entryAfter ["writeBoundary"] ''
         chmod 600 ${config.home.homeDirectory}/.config/sops/age/keys.txt
       '';
       sops = {
         age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-        defaultSopsFile = inputs.secrets.secrets-file;
+        defaultSopsFile = "${inputs.secrets.outPath}/secrets.yaml";
         secrets."private_keys/dylan" = {
           path = "${config.home.homeDirectory}/.ssh/id_ed25519";
           mode = "0400";
