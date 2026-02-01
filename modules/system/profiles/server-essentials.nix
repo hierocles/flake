@@ -16,7 +16,7 @@
       nixos = {lib, ...}: {
         # Disable GUI-related services
         services.xserver.enable = lib.mkDefault false;
-        environment.noXlibs = lib.mkDefault true;
+        #environment.noXlibs = lib.mkDefault true;
 
         # Disable sound
         services.pulseaudio.enable = lib.mkDefault false;
