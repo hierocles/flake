@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+_: {
   flake.aspects.server._.install-script = {
-    nixos = {...}: {
+    nixos = {pkgs, ...}: {
       environment.systemPackages = [
         (pkgs.writeShellScriptBin "bootstrap-server" ''
           set -e
