@@ -13,14 +13,12 @@
           }
         ];
       };
+      environment.shellAliases = {
+        sudo = "doas";
+      };
     };
   in {
     nixos = doas;
     darwin = doas;
-    homeManager = {
-      programs.fish.shellAliases = {
-        sudo = "doas";
-      };
-    };
   };
 }

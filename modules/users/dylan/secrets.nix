@@ -17,6 +17,7 @@
         defaultSopsFile = "${inputs.secrets}/secrets.yaml";
         secrets."private_keys/dylan" = {
           path = "${config.home.homeDirectory}/.ssh/id_ed25519";
+          mode = "0400";
         };
       };
     };

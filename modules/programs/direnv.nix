@@ -11,10 +11,10 @@
         enableFishIntegration = true;
         nix-direnv.enable = true;
       };
-      #programs.direnv-instant = {
-      #  enable = true;
-      #  enableFishIntegration = true;
-      #};
+      programs.direnv-instant = {
+        enable = true;
+        enableFishIntegration = true;
+      };
     };
   };
 }
