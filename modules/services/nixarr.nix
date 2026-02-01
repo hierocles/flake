@@ -77,6 +77,8 @@
         };
         qbittorrent = {
           enable = true;
+          peerPort = inputs.secrets.networking.ports.vpn;
+          openFirewall = true;
           vpn.enable = true;
           qui.enable = true;
           privateTrackers.disableDhtPex = true;
