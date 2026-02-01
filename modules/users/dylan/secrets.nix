@@ -12,10 +12,12 @@
 
     # Home-manager secrets (for SSH keys, etc.)
     homeManager = {config, ...}: {
-      home.file.".config/sops/age/keys.txt".source = "${inputs.secrets.outPath}/age-keys.txt";
-      home.activation.fixSopsKeyPermissions = config.lib.dag.entryAfter ["writeBoundary"] ''
+      home.activation.setupSopsKey = config.lib.dag.entryBefore ["writeBoundary"] ''
+        mkdir -p ${config.home.homeDirectory}/.config/sops/age
+        cp ${inputs.secrets.outPath}/age-keys.txt ${config.home.homeDirectory}/.config/sops/age/keys.txt
         chmod 600 ${config.home.homeDirectory}/.config/sops/age/keys.txt
       '';
+
       sops = {
         age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         defaultSopsFile = "${inputs.secrets.outPath}/secrets.yaml";
