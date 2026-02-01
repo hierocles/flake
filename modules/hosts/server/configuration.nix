@@ -7,8 +7,8 @@
         bootloader
         disko
         dylan
-        dylan._.samba
-        samba
+        #dylan._.samba
+        #samba
         nixarr
         #profilarr
         transmission-to-qbittorrent
