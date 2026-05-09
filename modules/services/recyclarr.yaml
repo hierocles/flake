@@ -21,7 +21,9 @@ radarr:
       - template: radarr-custom-formats-sqp-1-web-1080p
     custom_formats:
       - trash_ids:
-          - b17886cb4158d9fea189859409975758 # HDR10+ Boost
+          - 493b6d1dbec3c3364c59d7607f7e3405 # HDR
+          - caa37d0df9c348912df1fb1d88f9273a # HDR10+ Boost
+          - 923b6abef9b17f937fab56cfcf89e1f1 # No Dolby Vision
           - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
           - ae9b7c9ebde1f3bd336a8cbd1ec4c5e5 # No-RlsGroup
           - 7357cf5161efbf8c4d5d0c30b4815ee2 # Obfuscated
@@ -56,6 +58,9 @@ sonarr:
           - e1a997ddb54e3ecbfe06341ad323c458 # Obfuscated
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 1b3994c551cbb92a2c781af061f4ab44 # Scene
+          - 493b6d1dbec3c3364c59d7607f7e3405 # HDR
+          - caa37d0df9c348912df1fb1d88f9273a # HDR10+ Boost
+          - 923b6abef9b17f937fab56cfcf89e1f1 # Exclude Dolby Vision
         assign_scores_to:
           - name: WEB-2160p
           - name: WEB-1080p
