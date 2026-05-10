@@ -13,21 +13,27 @@
       inputs.nixos-cli.nixosModules.nixos-cli
     ];
 
-    services.nixos-cli = {
+    programs.nixos-cli = {
       enable = true;
-      config = {
+      settings = {
         general = {
           config_location = "${self}";
-          root_command = "doas";
-          use_nvd = true;
         };
         apply = {
           ignore_dirty_tree = true;
+          reexec_as_root = true;
           use_nom = true;
         };
         confirmation = {
           empty = "default-yes";
           always = true;
+        };
+        differ = {
+          command = ["nvd" "diff"];
+          tool = "command";
+        };
+        root = {
+          command = "doas";
         };
       };
     };

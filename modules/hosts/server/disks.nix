@@ -21,7 +21,10 @@
         "subvol=home"
       ];
 
-      boot.zfs.extraPools = ["media"];
+      boot.zfs = {
+        extraPools = ["media"];
+        forceImportRoot = false;
+      };
     };
   };
 }

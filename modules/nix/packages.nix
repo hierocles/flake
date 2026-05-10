@@ -11,5 +11,8 @@ _: {
     profilarr = _final.callPackage ../../packages/profilarr {};
     tqm = _final.callPackage ../../packages/tqm {};
     transmission-to-qbittorrent = _final.callPackage ../../packages/transmission-to-qbittorrent {};
+
+    # nixpkgs lags Recyclarr releases; `overrideAttrs` cannot refresh NuGet locks — see packages/recyclarr/default.nix.
+    recyclarr = _final.callPackage ../../packages/recyclarr {};
   };
 }

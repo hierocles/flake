@@ -7,7 +7,10 @@
     };
   in {
     nixos = {
-      nixpkgs.overlays = [stableOverlay];
+      nixpkgs.overlays = [
+        stableOverlay
+        inputs.self.overlays.default
+      ];
       nixpkgs.config.allowUnfree = true;
       system.stateVersion = "25.11";
       users.mutableUsers = false;
@@ -16,7 +19,10 @@
     darwin = {pkgs, ...}: {
       nixpkgs.config.allowUnfree = true;
       system.stateVersion = 6;
-      nixpkgs.overlays = [stableOverlay];
+      nixpkgs.overlays = [
+        stableOverlay
+        inputs.self.overlays.default
+      ];
       environment.systemPackages = with inputs.nix-darwin.packages.${pkgs.stdenv.hostPlatform.system}; [
         darwin-option
         darwin-rebuild

@@ -4,16 +4,19 @@
   ...
 }: {
   flake-file.inputs = {
-    nixarr.url = "github:nix-media-server/nixarr/dev";
+    nixarr.url = "github:nix-media-server/nixarr";
   };
 
   flake.aspects.nixarr = {
     nixos = {
       pkgs,
       config,
+      lib,
       ...
     }: {
-      imports = lib.optionals (inputs ? nixarr) [inputs.nixarr.nixosModules.default];
+      imports = lib.optionals (inputs ? nixarr) [
+        inputs.nixarr.nixosModules.default
+      ];
 
       nixarr = {
         enable = true;
@@ -44,20 +47,9 @@
           enable = true;
           openFirewall = true;
         };
-        # Need to override sqlite package until v5 stable is released
-        # See: https://github.com/Sonarr/Sonarr/issues/8249#issuecomment-3649898919
-        sonarr = let
-          sqlite-3-50 = pkgs.sqlite.overrideAttrs (old: {
-            version = "3.50.0";
-            src = pkgs.fetchurl {
-              url = "https://sqlite.org/2025/sqlite-autoconf-3500000.tar.gz";
-              sha256 = "09w32b04wbh1d5zmriwla7a02r93nd6vf3xqycap92a3yajpdirv";
-            };
-          });
-        in {
+        sonarr = {
           enable = true;
           openFirewall = true;
-          package = pkgs.sonarr.override {sqlite = sqlite-3-50;};
         };
         prowlarr = {
           enable = true;
@@ -67,7 +59,7 @@
           enable = true;
           openFirewall = true;
         };
-        jellyseerr = {
+        seerr = {
           enable = true;
           openFirewall = true;
         };
@@ -85,22 +77,58 @@
         };
       };
 
-      services.flaresolverr.enable = true;
-      # systemd.services.plex = {
-      #   serviceConfig = {
-      #     ReadWritePaths = ["/var/lib/plex-transcode"];
-      #     PrivateTmp = lib.mkForce false;
-      #     MemoryDenyWriteExecute = lib.mkForce false;
-      #   };
-      #   preStart = lib.mkAfter ''
-      #     # Ensure transcode directory exists and is writable
-      #     mkdir -p /var/lib/plex-transcode
-      #     chown plex:media /var/lib/plex-transcode
+      # nixarr still invokes `recyclarr` with `--app-data`, removed in Recyclarr v8+.
+      # Match `RECYCLARR_*` handling in nixpkgs `services.recyclarr`.
+      systemd.services.recyclarr.serviceConfig = lib.mkIf (config.nixarr.enable && config.nixarr.recyclarr.enable) (
+        let
+          r = config.nixarr.recyclarr;
+          # Same idea as nixarr’s `recyclarr/default.nix` `effectiveConfigFile` (env_var tags).
+          yamlGenerator = {preserved-tags ? []}: let
+            selectors =
+              pkgs.lib.strings.concatStringsSep "|"
+              (builtins.map (
+                x: ''
+                  with((.. | select(kind == "scalar") | select(tag == "!!str") | select(test("^!${x} .*"))); . = sub("!${x} ", "") | . tag="!${x}")
+                ''
+              )
+                preserved-tags);
+          in {
+            generate = name: value:
+              pkgs.callPackage (
+                {
+                  runCommand,
+                  yq-go,
+                }:
+                runCommand name
+                  {
+                    nativeBuildInputs = [yq-go];
+                    value = builtins.toJSON value;
+                    passAsFile = ["value"];
+                    preferLocalBuild = true;
+                  }
+                  ''
+                    yq '${selectors}' "$valuePath" -o yaml > $out
+                  ''
+              ) {};
+          };
+          format = yamlGenerator {preserved-tags = ["env_var"];};
+          generated = format.generate "recyclarr-config.yml" r.configuration;
+          configPath =
+            if r.configFile != null
+            then r.configFile
+            else generated;
+        in {
+          ExecStart = lib.mkOverride 9 (
+            "${lib.getExe r.package} ${config.services.recyclarr.command} --config ${configPath}"
+          );
+          Environment = lib.mkOverride 9 [
+            "RECYCLARR_CONFIG_DIR=${toString r.stateDir}"
+            "RECYCLARR_DATA_DIR=${toString r.stateDir}"
+          ];
+        }
+      );
 
-      #     # Ensure EasyAudioEncoder is executable after codec updates
-      #     find /var/lib/nixarr/state/plex/Plex\ Media\ Server/Codecs -name "EasyAudioEncoder" -type f -exec chmod +x {} \;
-      #   '';
-      # };
+      services.flaresolverr.enable = true;
     };
   };
 }

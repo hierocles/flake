@@ -3,13 +3,13 @@ _: {
     makeConfig = pkgs: {
       environment.systemPackages = with pkgs; [
         nodejs
-        nodePackages.npm
+        pnpm
       ];
     };
     makeHomeConfig = pkgs: {
       home.packages = with pkgs; [
-        nodePackages.pnpm
-        nodePackages.yarn
+        pnpm
+        yarn
       ];
     };
   in {

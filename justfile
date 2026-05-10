@@ -2,10 +2,10 @@
 current_host := `hostname`
 
 test FLAKE=current_host:
-    doas nixos apply .#{{FLAKE}} --no-boot
+    nixos apply .#{{FLAKE}} --no-boot
 
 build FLAKE=current_host:
-    doas nixos apply .#{{FLAKE}} --no-boot --no-activate --output ./result
+    nixos apply .#{{FLAKE}} --no-boot --no-activate --output ./result
 
 rebuild FLAKE=current_host:
     doas nixos apply .#{{FLAKE}}
