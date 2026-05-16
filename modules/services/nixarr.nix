@@ -35,10 +35,10 @@
           };
         };
 
-        autobrr = {
-          enable = true;
-          openFirewall = true;
-        };
+        #autobrr = {
+        #  enable = true;
+       #   openFirewall = true;
+       # };
         bazarr = {
           enable = true;
           openFirewall = true;
@@ -82,15 +82,15 @@
       systemd.services.recyclarr.serviceConfig = lib.mkIf (config.nixarr.enable && config.nixarr.recyclarr.enable) (
         let
           r = config.nixarr.recyclarr;
-          # Same idea as nixarr’s `recyclarr/default.nix` `effectiveConfigFile` (env_var tags).
+          # Same idea as nixarr's `recyclarr/default.nix` `effectiveConfigFile` (env_var tags).
           yamlGenerator = {preserved-tags ? []}: let
             selectors =
               pkgs.lib.strings.concatStringsSep "|"
               (builtins.map (
-                x: ''
-                  with((.. | select(kind == "scalar") | select(tag == "!!str") | select(test("^!${x} .*"))); . = sub("!${x} ", "") | . tag="!${x}")
-                ''
-              )
+                  x: ''
+                    with((.. | select(kind == "scalar") | select(tag == "!!str") | select(test("^!${x} .*"))); . = sub("!${x} ", "") | . tag="!${x}")
+                  ''
+                )
                 preserved-tags);
           in {
             generate = name: value:
@@ -99,7 +99,7 @@
                   runCommand,
                   yq-go,
                 }:
-                runCommand name
+                  runCommand name
                   {
                     nativeBuildInputs = [yq-go];
                     value = builtins.toJSON value;
@@ -118,9 +118,7 @@
             then r.configFile
             else generated;
         in {
-          ExecStart = lib.mkOverride 9 (
-            "${lib.getExe r.package} ${config.services.recyclarr.command} --config ${configPath}"
-          );
+          ExecStart = lib.mkOverride 9 "${lib.getExe r.package} ${config.services.recyclarr.command} --config ${configPath}";
           Environment = lib.mkOverride 9 [
             "RECYCLARR_CONFIG_DIR=${toString r.stateDir}"
             "RECYCLARR_DATA_DIR=${toString r.stateDir}"

@@ -49,7 +49,7 @@ buildDotnetModule (finalAttrs: {
   dotnet-sdk = dotnetCorePackages.sdk_10_0;
   dotnet-runtime = dotnetCorePackages.runtime_10_0;
 
-  executables = [ "recyclarr" ];
+  executables = ["recyclarr"];
   makeWrapperArgs = [
     "--prefix PATH : ${
       lib.makeBinPath [
@@ -60,7 +60,7 @@ buildDotnetModule (finalAttrs: {
   ];
 
   passthru = {
-    tests.version = testers.testVersion { package = finalAttrs.finalPackage; };
+    tests.version = testers.testVersion {package = finalAttrs.finalPackage;};
   };
 
   meta = {
@@ -73,6 +73,6 @@ buildDotnetModule (finalAttrs: {
       aldoborrero
     ];
     mainProgram = "recyclarr";
-    sourceProvenance = with lib.sourceTypes; [ fromSource ];
+    sourceProvenance = with lib.sourceTypes; [fromSource];
   };
 })

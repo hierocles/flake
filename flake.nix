@@ -31,7 +31,10 @@
     };
     flake-aspects.url = "github:vic/flake-aspects";
     flake-file.url = "github:vic/flake-file";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +43,7 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-mineral.url = "github:cynicsketch/nix-mineral";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
@@ -53,13 +56,11 @@
       url = "github:nix-community/nixos-anywhere";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-cli.url = "github:nix-community/nixos-cli";
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     secrets.url = "git+ssh://git@github.com/hierocles/secrets.git";
     sops-nix = {
