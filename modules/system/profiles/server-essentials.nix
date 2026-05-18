@@ -9,6 +9,8 @@
         secrets
         ssh
         determinate
+        devshell
+        cli
         # Exclude: fonts (no display)
         # Exclude: mineral (desktop boot config)
         # Exclude: homebrew (macOS specific)
