@@ -7,7 +7,7 @@
     cursor-server = "github:KINGFIOX/nixos-cursor-server";
   };
   flake.aspects.ide = {
-    nixos = {
+    nixos = {pkgs, ...}: {
       imports = lib.optionals (inputs ? cursor-server) [
         inputs.cursor-server.nixosModules.default
       ];
