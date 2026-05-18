@@ -4,7 +4,7 @@
   ...
 }: {
   flake-file.inputs = {
-    cursor-server = "github:KINGFIOX/nixos-cursor-server";
+    cursor-server.url = "github:KINGFIOX/nixos-cursor-server";
   };
   flake.aspects.ide = {
     nixos = {pkgs, ...}: {
