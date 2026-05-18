@@ -16,6 +16,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    cursor-server.url = "github:KINGFIOX/nixos-cursor-server";
     deploy-rs = {
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,10 +32,7 @@
     };
     flake-aspects.url = "github:vic/flake-aspects";
     flake-file.url = "github:vic/flake-file";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +44,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-mineral.url = "github:cynicsketch/nix-mineral";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix4nvchad = {
       url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,6 +65,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    vscode-server.url = "github:Hyffer/nixos-vscode-server/fix-vsce-sign";
   };
 }
