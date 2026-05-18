@@ -11,7 +11,7 @@
       imports = lib.optionals (inputs ? cursor-server) [
         inputs.cursor-server.nixosModules.default
       ];
-      cursor-server = {
+      services.cursor-server = {
         enable = true;
         nodejsPackage = pkgs.nodejs_22;
       };
