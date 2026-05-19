@@ -10,8 +10,6 @@
         ssh
         determinate
         devshell
-        cli
-        ide
         # Exclude: fonts (no display)
         # Exclude: mineral (desktop boot config)
         # Exclude: homebrew (macOS specific)
