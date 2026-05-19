@@ -9,6 +9,7 @@
         secrets
         fonts
         ssh
+        ide
         determinate
         # Exclude: mineral (may set boot config)
         # Exclude: homebrew (macOS specific)
