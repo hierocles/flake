@@ -27,6 +27,9 @@
         networking.hostName = "server";
         i18n.defaultLocale = "en_US.UTF-8";
 
+        # Allow *Arr to hardlink files owned by other users
+        boot.kernel.sysctl."fs.protected_hardlinks" = 0;
+
         # services.profilarr = {
         #   enable = true;
         #   openFirewall = true;

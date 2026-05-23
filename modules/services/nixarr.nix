@@ -39,10 +39,10 @@
         #  enable = true;
        #   openFirewall = true;
        # };
-        bazarr = {
-          enable = true;
-          openFirewall = true;
-        };
+       # bazarr = {
+       #   enable = true;
+       #   openFirewall = true;
+       # };
         radarr = {
           enable = true;
           openFirewall = true;
